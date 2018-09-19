@@ -5,12 +5,8 @@ x = float(sys.argv [1])
 y = float(sys.argv [2])
 z = float(sys.argv [3])
 
-if x > y and > z
-	print("true")
-
-elif x < y and < z 
-	print(true)
-
-else
+if (x>y>z) or (x<y<z):
+	print('true')
+else:
 	print("false")
 

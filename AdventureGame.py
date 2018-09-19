@@ -45,14 +45,14 @@ def food1():
 		result4()
 
 def death3(): 
-	restart3 = input("You follow the tracks until you see something large rushing towards you. You fire your weapon it does nothing. You're no match for the bear. \n enter 1 to restart")
-	if restart3 == '1'
+	restart3 = input("You follow the tracks until you see something large rushing towards you. You fire your weapon it does nothing. You're no match for the bear. Enter 1 to restart \n\n >>")
+	if restart3 == '1':
 		start() 
-	else
-	print("I don't know what "+restart3+" means. Please type a 1")
-	death3() 
+	else:
+		print("I don't know what "+restart3+" means. Please type a 1")
+		death3() 
 
 def result4(): 
-	result4 = input("You follow the tracks and find a deer waiting. You draw your weapon and do what you have to.")
+	result4 = input("You follow the tracks and find a deer waiting. You draw your weapon and do what you have to. You bring it back to the cave and eat some of it, while buring the rest in the snow. You sleep ")
 
 start()
