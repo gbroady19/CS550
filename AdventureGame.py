@@ -1,3 +1,4 @@
+from timeit import default_timer as timer
 def start():
 	result = input("\n\n It all started with a simple ski trip, how could it have gone so wrong? \n\nYou've been lost for a few hours now, trying to get back to the trail. It's getting dark. You see a gave where you can camp for the night, but your gut tells you the trail is right over the next hill. Your next decision might determine your fate \n\n1) Go into the cave for the night \n2) Keep looking for the trail.\n\n>> ")
 	if result == '1':
@@ -30,6 +31,7 @@ def cave():
 
 def death2():
 	restart2 = input("You eat what seems like bucket fulls of snow, but the thirstiness never seems to go away. You lay down in the snow and relax. You decide to rest your eyes for a few minutes... which turns into forever \n enter 1 to restart \n\n>>")
+
 	if restart2 == '1':  
 		start()
 	else:  
@@ -53,6 +55,40 @@ def death3():
 		death3() 
 
 def result4(): 
-	result4 = input("You follow the tracks and find a deer waiting. You draw your weapon and do what you have to. You bring it back to the cave and eat some of it, while buring the rest in the snow. You sleep ")
+	result4 = input("You follow the tracks and find a deer waiting. You draw your weapon and do what you have to. You bring it back to the cave and eat some of it, while buring the rest in the snow. You sleep. When you wake up you see some tracks outside leading from the scaps of food you left out. They're different than any you've ever seen. They almost look human but bigger. \n\n1) Follow the tracks \n2) Wait another night for help to come \n\n>>")
+	if result4 == '2':
+	   death4()
+	elif result4 == '1': 
+		result5() 
+	else: 
+		print("I don't know what "+result4+" means. Please type a 1 or a 2")
+
+def death4(): 
+	restart4 =input("The creature who's tracks you saw comes back the next night...this time you're the meal. Enter a 1 to restart \n\n>>")
+	if restart4 == '1':
+		start() 
+	else:
+		print("I don't know what "+restart4+" means. Please type a 1")
+		death4() 
+def result5(): 
+	result5 = input("The path lead you to a clearing filled with ") 
+ 
+def end1(): 
+startrun= input('You must run away from the Yeti, once you press the 1 key a time will start. You must input 10 characters in less than 10 seconds to escape! \n\n>>') 
+
+if startrun = '1':
+	start= timer() 
+	count=0
+	while count < 10:  
+		intput('>>')  
+		count += 1
+
+	end= timer()
+else: 
+	print("Thats not a 1! Please enter a 1 to start the game")
+
+if (start-end)> 10: 
+ 	ending1= input("YOU WIN! PRESS") 
+
 
 start()
