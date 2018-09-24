@@ -71,6 +71,7 @@ def result4():
 		result5() 
 	else: 
 		print("I don't know what "+result4+" means. Please type a 1 or a 2")
+		result4()
 
 def death4(): 
 	restart4 =input("The creature who's tracks you saw comes back the next night...this time you're the meal. Enter a 1 to restart \n\n>>")
@@ -151,11 +152,11 @@ def end2():
 
 
 def ending2(): 
-	ending2restart = input("Congradulations! You have been accepted by the Yeti people. A few weeks pass and you have to make a decision. \n\n1) Attempt to escape\n2) Live out your days with the Yeti people \n\n>>")
+	ending2restart = input("Congratulaions! You have been accepted by the Yeti people. A few weeks pass and you have to make a decision. \n\n1) Attempt to escape\n2) Live out your days with the Yeti people \n\n>>")
 
 	if ending2restart == '1': 
 
-		ending2var=input("You plan you escape for weeks, but you are caught at the last second. The Yetis aren't happy at all with you decision and decide that if they can't have you no one can. Press 1 to restart or press control C to quit. \n\n>>" )
+		ending2var=input("You plan your escape for weeks, but you are caught at the last second. The Yetis aren't happy at all with you decision and decide that if they can't have you no one can. Press 1 to restart or press control C to quit. \n\n>>" )
 		
 		if ending2var == "1": 
 				start() 
