@@ -131,7 +131,7 @@ def end1():
 number =random.randrange(1,10)
 def end2(): 
 	
-	guess = eval(input("The Yeti have offered you a chance to earn respect by guessing the secret artifiact. There are 10 objects to chose from. Enter a value from 1-10 and the Yeti will point to a higher or lower aritfiact.\n\n>>"))
+	guess = eval(input("The Yeti have offered you a chance to earn respect by guessing the secret artifact. There are 10 objects to chose from. Enter a value from 1-10 and the Yeti will point to a higher or lower aritfiact.\n\n>>"))
 	
 	if guess == number:
 		ending2()
@@ -168,7 +168,7 @@ def ending2():
 		print("You live out your days peacefully with the Yeti. You have reached the end of the game! Be sure to play again for multiple endings! Press control C to quit.")
 	else: 
 		print("I don't know what "+ending2restart+" means. Please type a 1 or a 2 or press control C to quit.")
-		ending2() 
+		
 
 #Other ending/death 
 def end3(): 
