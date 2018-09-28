@@ -1,0 +1,5 @@
+mport random as r
+
+a=[]
+for x in range(10):
+	a.append(r.randrange(100))

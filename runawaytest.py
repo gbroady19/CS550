@@ -17,7 +17,7 @@ def test():
 	else: 
 		print("Thats not a 1! Please enter a 1 to start the game")
 
-	if (start-end) < 8 : 
+	if (start-end) < 10 : 
 		print("YOU WIN! PRESS")
 
 	else:
