@@ -26,12 +26,11 @@ emptyspaces = ((height-2)*(width-2)) - bombs -9   #the number of spaces that don
 global revealed
 revealed = 0 #will be increased each time a space is revealed by the user
 
-print(emptyspaces)
+
 
 def wincheck(): #Checks if you've won after ever revealing sequence 
 	global emptyspaces 
 	global revealed
-	print(revealed)
 
 	if emptyspaces <= revealed:
 
@@ -73,9 +72,12 @@ def selecttile(): #allows user to select tile for flagging or clearing
 		tileselection= input("Please Enter the coordinate  Y,X format ")
 		tile_input= tileselection.split(',')
 		coordinates = [int(x.strip()) for x in tile_input]
-		userboard[coordinates[0]][coordinates[1]] = solution[coordinates[0]][coordinates[1]] 
-		revealed +=3	
-		bombchecking()
+		if userboard[coordinates[0]][coordinates[1]] != solution[coordinates[0]][coordinates[1]]:
+			userboard[coordinates[0]][coordinates[1]] = solution[coordinates[0]][coordinates[1]] 
+			revealed +=3	
+			bombchecking()
+		else: 
+			print("That tile has already been selected")
 
 	else: 
 		print("I don't know what that means")
