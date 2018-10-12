@@ -1,0 +1,5 @@
+Towers  of  Hanoi,  from  https://introcs.cs.princeton.edu/python/23recursion/
+
+defmoves(n,  left):
+	if n  ==0:
+		returnmoves(n-1,not  left)if  left:    stdio.writeln(str(n)+'  left')else:    stdio.writeln(str(n)+'  right')moves(n-1,not  left) 

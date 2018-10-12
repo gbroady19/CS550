@@ -1,0 +1,14 @@
+# make empty list of spaces with zeros
+# already know user choice is zero, add to your list
+# start a while loop that continues as long as the list is not empty
+# take current position out of list using pop(0)
+# nested for loops (one for width, one for height, looking "around" the zero location)
+# check to see if current space is a newly revealed zero
+# if it is newly revealed, add to list
+# reveal that position 
+
+
+
+list = []
+list.append([x,y])
+
