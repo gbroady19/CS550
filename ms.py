@@ -1,7 +1,8 @@
 #minesweeper for CS550 by KB. Completed 10/12/18 
 # Sources consulted: https://www.tutorialspoint.com/python/python_2darray.htm
 #https://stackoverflow.com/questions/7378091/taking-multiple-inputs-from-user-in-python
-#Some help and suggestions provided by Anan Aramthanapon and Kevin Xie 
+#MUCH help and suggestions provided by Anan Aramthanapon 
+#Also help from Kevin Xie 
 # please start by inputting ms.py height width bombs
 
 
@@ -20,25 +21,22 @@ checkcoordinates = [0][0] #Creation of list
 flagcount = 0
 checklist =[]
 
-global emptyspaces 
-emptyspaces = ((height-2)*(width-2)) - bombs -9   #the number of spaces that don't contain bombs
-
-global revealed
-revealed = 0 #will be increased each time a space is revealed by the user
 
 
 
-def wincheck(): #Checks if you've won after ever revealing sequence 
-	global emptyspaces 
-	global revealed
-
-	if emptyspaces <= revealed:
-
-		print("YOU WIN! Thanks for playing minesweeper!!")
+def wincheck(): #Checks if you've won after every revealing sequence 
+	winchecking = 0
+	for x in range(1,height-1):
+		for y in range(1,width-1):
+			if userboard[x][y] == "□":
+				if solution[x][y] != "*":
+					winchecking = 1
+	if winchecking == 0:
+		print("You WIN!")
 		winboard()
-		
 	else: 
 		printboard()
+
 
 def winboard(): #Prints a board so you can see that you've won 
 	solution = userboard
@@ -67,14 +65,14 @@ def selecttile(): #allows user to select tile for flagging or clearing
 		flagcount += 1 
 		printboard() 
 
-	if userinput == "C": 
+	if userinput == "C": #Allows user to clear spaces, sends to bombchecking
 		global revealed
-		tileselection= input("Please Enter the coordinate  Y,X format ")
+		tileselection= input("Please Enter the coordinate  Y,X format\n\n>>")
 		tile_input= tileselection.split(',')
 		coordinates = [int(x.strip()) for x in tile_input]
 		if userboard[coordinates[0]][coordinates[1]] != solution[coordinates[0]][coordinates[1]]:
 			userboard[coordinates[0]][coordinates[1]] = solution[coordinates[0]][coordinates[1]] 
-			revealed +=3	
+			
 			bombchecking()
 		else: 
 			print("That tile has already been selected")
@@ -83,7 +81,7 @@ def selecttile(): #allows user to select tile for flagging or clearing
 		print("I don't know what that means")
 		selecttile()
 
-def bombchecking(): #checks if user input was a bomb
+def bombchecking(): #checks if user input was a bomb, if checks if it's a zero, if not sends to zero checkings
 	if userboard[coordinates[0]][coordinates[1]] == "*":
 		print("That was a BOMB, you lose")
 		quit()
@@ -106,7 +104,7 @@ def zeroreveal(): #if userinput was a zero, reveal all spaces around it, do the 
 		coordinate2 = checklist[1]
 		checklist.pop(0)
 		checklist.pop(0)
-		revealed +=1
+	
 
 		for x in range(-1, 2):
 			for y in range(-1, 2):
@@ -116,12 +114,8 @@ def zeroreveal(): #if userinput was a zero, reveal all spaces around it, do the 
 						checklist.append(coordinate2+y)
 						userboard[coordinate1+(x)][coordinate2+(y)]=  solution[coordinate1+(x)][coordinate2+(y)]
 					
-	
-					else: 
-						pass 
 				else: 
 					userboard[coordinate1+(x)][coordinate2+(y)]=  solution[coordinate1+(x)][coordinate2+(y)] 
-					
 
 		zeroreveal()
 		wincheck()
@@ -129,8 +123,7 @@ def zeroreveal(): #if userinput was a zero, reveal all spaces around it, do the 
 			
 
 for x in range(bombs): #bomb placement
-	solution[int(random.randrange(1, height
--1))] [int(random.randrange(1,width-1))] = '*'
+	solution[int(random.randrange(1, height-1))] [int(random.randrange(1,width-1))] = '*'
 
 #boarder of ones to avoid index errors
 solution[0] = [1]*(width) 
