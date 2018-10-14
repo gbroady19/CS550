@@ -3,7 +3,7 @@ from PIL import Image
 imgx = 512 
 imgy = 512 
 
-image = Image.new("RGB",(imgx,imgy))
+image = Image.new("RGB",(imgx,imgy),(100,0,100)
 
 image.putpixel((0,0),(100,0,100))
 
