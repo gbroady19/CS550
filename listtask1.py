@@ -1,3 +1,4 @@
+#Task 1
 import random as r
 
 a=[]
@@ -11,3 +12,4 @@ for x in a:
 print(a)
 
 #got help from: https://thispointer.com/python-how-to-remove-multiple-elements-from-list/
+
