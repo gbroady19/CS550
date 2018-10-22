@@ -4,17 +4,19 @@ from PIL import Image
 import random 
 
 #set image size
-imgx = 500
-imgy = 500
+imgx = 1000
+imgy = 1000
 
+xa, xb = -0.75029467235117, -0.7478726919928045
+ya, yb = 0.06084172052354717, 0.06326370066585434
 image = Image.new("RGB",(imgx,imgy))
 
 #for all the pixels in the image
 for Py in range(imgy):
-	yS= (4/(imgy-1)) * Py + (-2)
+	yS= ((yb-ya)/(imgy-1)) * Py + (ya)
 	for Px in range(imgx):
 		#divide all the pixels into sections between -2 and 2
-		xS = (4/(imgx-1))* Px + (-2) 
+		xS = ((xb-xa)/(imgx-1))* Px + (xa) 
 		x = 0 
 		y = 0 
 		iteration = 0 
@@ -27,13 +29,13 @@ for Py in range(imgy):
 			iteration += 1 
 			x = xtemp
 		# color shades based on iteration 
-		colorR = 256-(iteration+69)
+		colorR = iteration
 		colorG = (iteration*50)%256
 		colorB = 256- iteration
-		image.putpixel((Px,Py),(colorR, colorG, colorB))
+		image.putpixel((Px,Py),(colorR, (colorG), colorB))
 
 
-image.save("mandelbrot.png", "PNG")
+image.save("mandelbrot2.png", "PNG")
 
 
 
