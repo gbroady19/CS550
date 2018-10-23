@@ -2,10 +2,11 @@
 #inspired by work done with wikipedia example code
 from PIL import Image 
 import random 
-
+from PIL import ImageFilter
 #set image size
-imgx = 1000
-imgy = 1000
+imgx = 500
+imgy = 500
+
 
 xa, xb = -0.75029467235117, -0.7478726919928045
 ya, yb = 0.06084172052354717, 0.06326370066585434
@@ -32,10 +33,13 @@ for Py in range(imgy):
 		colorR = iteration
 		colorG = (iteration*50)%256
 		colorB = 256- iteration
-		image.putpixel((Px,Py),(colorR, (colorG), colorB))
+		image.putpixel((Px,Py),(colorR, colorG, colorB))
+		
+	
+		
+imageedits = image.filter(ImageFilter.CONTOUR)
+imageedit.save("mandelbrot2.png", "PNG")
 
-
-image.save("mandelbrot2.png", "PNG")
 
 
 
