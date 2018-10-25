@@ -3,6 +3,7 @@ CS550 Fractal Project by KB
 10/25/18 
 This project includes two interesting mandelbrot fractels and one fractal based loosely on the Cantor set 
 It also includes experimentation with colors and other functions availible in the PIL library 
+This is a combination of previous work from projects: mandelbrot, mandelbrot2, fractal, and spiral thing, so please see those projects for work progression 
 
 On my honor, I have neither given nor recieved unauthorized aid. 
 
