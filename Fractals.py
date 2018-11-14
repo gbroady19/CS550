@@ -20,6 +20,7 @@ from PIL import ImageFilter
 #https://natureofcode.com/book/chapter-8-fractals/
 #https://stackoverflow.com/questions/13053443/drawing-a-line-on-an-image-with-pil/13053545
 #https://stackoverflow.com/questions/9983263/crop-the-image-using-pil-in-python
+#Made with some suggestions from an experinced programer 
 
 #set image size
 imgx = 1000
