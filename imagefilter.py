@@ -1,21 +1,18 @@
-# from PIL import Image
-# from PIL import ImageFilter
-# from PIL import ImageEnhance
-# im = Image.open("SRP.jpg")
-# im = im.filter(ImageFilter.MaxFilter(3.3))
-# im,
-# im.show()
+
+#CS550 Filter by KB 
+#Produces purple colorized image 
+#To produce image, type in filename.jpg in command line 
+
+
 from PIL import Image
-from PIL import ImageFont
 from PIL import ImageDraw 
 from PIL import ImageOps
+import sys
 
-im = Image.open("grass.jpg")
+imagefile = sys.argv[1]
+im = Image.open(imagefile)
 width=im.width
 height = im.height
-tint=Image.new("RGB",(width,height),(300,100,100))
-image=ImageOps.grayscale(im)
-color=ImageOps.colorize(image,(204,204,255),(51,0,51))
-color.show()
-# finalimage=Image.blend(color,tint,0.25)
-# finalimage.show()
+image=ImageOps.grayscale(im) #converts image to grayscale
+color=ImageOps.colorize(image,(204,204,255),(51,0,51)) #colorizes image 
+color.show() #show image 
