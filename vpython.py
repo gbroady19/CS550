@@ -1,0 +1,1 @@
+ball = sphere(pos=vector(1,2,1), radius=0.5)
