@@ -1,4 +1,4 @@
-# I have seen this problem before, so unfourtunatly the surprise is spoiled. However, I do remember orginally thinking that changing your choice should not affect the outcome. 
+# I have seen this problem before, so unfourtunately the surprise was spoiled. However, I do remember originally thinking that changing your choice should not affect the outcome. 
 
 import random as r
 
