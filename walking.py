@@ -8,7 +8,7 @@ def walking(n):
 	walkcount =0
 	for y in range(n): 
 		location=[0,0]
-		for x in range(14):
+		for x in range(22):
 			direction = random.randrange(0,4)
 			if direction == 0: 
 				location[0] = location[0] + 1
