@@ -35,7 +35,7 @@ class Breakout():
 		#screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
 
 		bat = pygame.image.load("editbat.png").convert_alpha()
-		batrect = bat.get_rect()''
+		batrect = bat.get_rect()
 
 		ball = pygame.image.load("cursor1.png").convert_alpha()
 		ball.set_colorkey((255, 255, 255))
@@ -207,7 +207,7 @@ class Wall():
 		ypos = 60
 		adj = 0
 		self.brickrect = []
-		for i in range (0, int((width)/(self.bricklength/2))+1):           
+		for i in range (0, int(width/self.bricklength):           
 			if xpos > width:
 				if adj == 0:
 					adj = self.bricklength / 2

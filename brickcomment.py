@@ -7,43 +7,34 @@ https://stackoverflow.com/questions/25202092/pil-and-pygame-image
 http://www.varesano.net/blog/fabio/capturing%20screen%20image%20python%20and%20pil%20windows
 """
 
-import sys, pygame, random,time
+import sys, pygame, random,time, os
 from PIL import Image, ImageGrab
+
+current_path = os.path.dirname(__file__) # Where your .py file is located
+resource_path = os.path.join(current_path, 'resources') # The resource folder path
+image_path = os.path.join(resource_path, 'images') # The image folder path
 
 class Breakout():
    
-	def main(self):
-		  
+	def main(self, screen, cursor, BackGround): #Set some inital constants 
 		xspeed_init = 15
 		yspeed_init = 15
 		max_lives = 5
 		bat_speed = 30
 		score = 0 
-		time.sleep(1)
-		im= ImageGrab.grab()
-			
-		scr = im.convert("RGB")
-			
-		scr.save("back.png")
-		pygame.display.init()
 
-		infosize = pygame.display.Info()
+		infosize = pygame.display.Info() #info to make the display the correct size 
 		size = width, height = int(infosize.current_w), int(infosize.current_h)
 
-		pygame.init()            
-		screen = pygame.display.set_mode(size,pygame.FULLSCREEN)
-		#screen = pygame.display.set_mode(size, pygame.FULLSCREEN)
+		bat = pygame.image.load(os.path.join(image_path, 'editbat.png')).convert_alpha() #loading and scalling the bat 
+		bat = pygame.transform.scale(bat, (int(infosize.current_w*0.1),int(infosize.current_h*0.05)))
+		batrect = bat.get_rect()
 
-		bat = pygame.image.load("editbat.png").convert_alpha()
-		batrect = bat.get_rect()''
-
-		ball = pygame.image.load("cursor1.png").convert_alpha()
+		ball = cursor #the "ball" is the cursor determined in the home function and is different for different operating systems
 		ball.set_colorkey((255, 255, 255))
-		ball = pygame.transform.scale(ball, (15,22))
-		ballrect = ball.get_rect()
-	   
-		   
 		
+		ballrect = ball.get_rect()
+
 		wall = Wall()
 		wall.build_wall(width)
 
@@ -60,7 +51,7 @@ class Breakout():
 		while 1:
 
 			# 60 frames per second
-			clock.tick(120)
+			clock.tick(60)
 
 			# process key presses
 			for event in pygame.event.get():
@@ -123,16 +114,18 @@ class Breakout():
 						 
 				ballrect.center = width * random.random(), height / 3   
 
+				#prcesses losing 
 				if lives == 0:                    
-					msg = pygame.font.Font(None,70).render("Game Over", True, (0,255,255))
-					screen.blit(backgroundfile, backgroundfile.get_rect())
+					msg = pygame.font.Font(None,50).render("Game Over! Score: " + str(score), True, (0,255,255))
+					screen.blit(BackGround.image, BackGround.rect)
 					msgrect = msg.get_rect()
-					msgrect = msgrect.move(width / 2 - (msgrect.center[0]), height / 3)
+					msgrect = msgrect.move((msgrect.center[0]), 0)
 					screen.blit(msg, msgrect)
 					pygame.display.flip()
 					# process key presses
 					#     - ESC to quit
 					#     - any other key to restart game
+					#Restarts game
 					while 1:
 						restart = False
 						for event in pygame.event.get():
@@ -140,16 +133,17 @@ class Breakout():
 								sys.exit()
 							if event.type == pygame.KEYDOWN:
 								if event.key == pygame.K_ESCAPE:
-									sys.exit()
+									return
 								if not (event.key == pygame.K_LEFT or event.key == pygame.K_RIGHT):                                    
 									restart = True      
 						if restart:                   
-							screen.blit(backgroundfile, backgroundfile.get_rect())
+							screen.blit(BackGround.image, BackGround.rect)
 							wall.build_wall(width)
 							lives = max_lives
 							score = 0
 							break
 			
+			#allows for bouncing off sides of the screen
 			if xspeed < 0 and ballrect.left < 0:
 				xspeed = -xspeed                                
 			
@@ -170,16 +164,15 @@ class Breakout():
 						 
 				wall.brickrect[index:index + 1] = []
 				score += 10
-				
-			backgroundfile = pygame.image.load("back.png")
-			infoObject = pygame.display.Info()
-			backgroundfile= pygame.transform.scale(backgroundfile, (infoObject.current_w,infoObject.current_h))
-			screen.blit(backgroundfile, backgroundfile.get_rect())
+			#continue to blit the background image (screenshot)	and the score text 
+			screen.blit(BackGround.image, BackGround.rect)
 			scoretext = pygame.font.Font(None,40).render(str(score), True, (0,255,255))
 			scoretextrect = scoretext.get_rect()
 			scoretextrect = scoretextrect.move(width - scoretextrect.right, 0)
 			screen.blit(scoretext, scoretextrect)
 
+
+ 			#Blit for wall 
 			for i in range(0, len(wall.brickrect)):
 				screen.blit(wall.brick, wall.brickrect[i])    
 
@@ -189,25 +182,27 @@ class Breakout():
 				xspeed = xspeed_init
 				yspeed = yspeed_init                
 				ballrect.center = width / 2, height / 3
-		 
+		 	
+		 	#blit for bat and ball 
 			screen.blit(ball, ballrect)
 			screen.blit(bat, batrect)
 			pygame.display.flip()
 
 class Wall():
 
+		#creating each brick and determining brick length 
 	def __init__(self):
-		self.brick = pygame.image.load("editbrick.png").convert_alpha()
+		self.brick = pygame.image.load(os.path.join(image_path, 'editbrick.png')).convert_alpha()
 		brickrect = self.brick.get_rect()
 		self.bricklength = brickrect.right - brickrect.left       
 		self.brickheight = brickrect.bottom - brickrect.top             
 
 	def build_wall(self, width):        
-		xpos = 0
+		xpos = 0 					
 		ypos = 60
 		adj = 0
 		self.brickrect = []
-		for i in range (0, int((width)/(self.bricklength/2))+1):           
+		for i in range (0, int(2*width/self.bricklength)):   #creating the wall scaled to screen size         
 			if xpos > width:
 				if adj == 0:
 					adj = self.bricklength / 2
@@ -219,9 +214,3 @@ class Wall():
 			self.brickrect.append(self.brick.get_rect())    
 			self.brickrect[i] = self.brickrect[i].move(xpos, ypos)
 			xpos = xpos + self.bricklength
-
-if __name__ == '__main__':
-	br = Breakout()
-	br.main()
-
-
