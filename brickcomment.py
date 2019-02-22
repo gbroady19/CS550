@@ -1,4 +1,4 @@
-""" 
+ """ 
 Code based on Breakout V 0.1 June 2009 by John Cheetham. Can be found at http://www.johncheetham.com/projects/breakout. 
 
 Sources for screenshot capture: 
